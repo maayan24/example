@@ -4,15 +4,22 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ClassLibrary.EF;
+using WebApi.DTO;
 
 namespace WebApi.Controllers
 {
     public class officersController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        public List<OfficerDto> Get()
         {
-            return new string[] { "value1", "value2" };
+            bgroup54_test2Entities db = new bgroup54_test2Entities();
+            return db.Officers.Select(x => new OfficerDto()
+            {
+                BadgeNum=x.BadgeNum,
+                Name=x.Name
+            }).ToList();
         }
 
         // GET api/<controller>/5
@@ -27,8 +34,18 @@ namespace WebApi.Controllers
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody] string value)
+        [Route("api/officers/{badgeNum}")]
+        public void Put(int badgeNum, [FromBody] string newName)
         {
+            bgroup54_test2Entities db = new bgroup54_test2Entities();
+
+
+            Officer o = db.Officers.SingleOrDefault(x => x.BadgeNum == badgeNum);
+            if (o != null)
+            {
+                o.Name = newName;
+                db.SaveChanges();
+            }
         }
 
         // DELETE api/<controller>/5

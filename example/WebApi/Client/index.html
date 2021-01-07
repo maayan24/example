@@ -4,8 +4,65 @@
     <meta charset="utf-8" />
     <script src="../Scripts/jquery-3.4.1.js"></script>
     <title></title>
+    <script>
+
+        function showOfficers() {
+        $.ajax({
+            dataType: "json",
+            url: "/api/officers",
+            contentType: "application/json",
+            type: "GET",
+            success: function (data)
+            {
+                $("#officers").empty();
+                for (var i = 0; i < data.length; i++)
+                {
+                    $("#officers").append($("<p>").html(data[i].BadgeNum + " ," + data[i].Name));
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+
+
+
+
+        });
+
+            
+        }
+        function updateOfficer() {
+
+            var $bageNum = $("#bageNum").val();
+            var $name = $("#nameOfficer").val();
+
+            $.ajax({
+                dataType: "json",
+                url: `/api/officers/${$bageNum}`,
+                contentType: "application/json",
+                type: "PUT",
+                data: JSON.stringify($name),
+                success: function (data) {
+                    showOfficers();
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+
+
+
+
+            });
+        }
+
+    </script>
 </head>
-<body>
-    <input type="button" value="הצגת קצינים" />
+<body dir="rtl" lang="he">
+    <input type="button" value="הצגת קצינים" onclick="showOfficers()" />
+    <div id="officers"></div>
+
+    <input type="text" placeholder="הזן מספר תג" id="bageNum" />
+    <input type="text" placeholder="הזן שם חדש" id="nameOfficer"/>
+    <input type="button" value="עדכן" onclick="updateOfficer()" />
 </body>
 </html>
