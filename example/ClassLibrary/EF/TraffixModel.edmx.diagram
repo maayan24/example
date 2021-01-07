@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2f05b893901a45daba2df7b7dae1b408" Name="Diagram1">
+        <EntityTypeShape EntityType="bgroup54_test2Model.Citizen" Width="1.5" PointX="8" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bgroup54_test2Model.Officer" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="bgroup54_test2Model.Report" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="bgroup54_test2Model.Team" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="bgroup54_test2Model.FK_Report_Citizen" ManuallyRouted="false" />
+        <AssociationConnector Association="bgroup54_test2Model.FK_Officer_Team" ManuallyRouted="false" />
+        <AssociationConnector Association="bgroup54_test2Model.FK_Report_Officer" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
